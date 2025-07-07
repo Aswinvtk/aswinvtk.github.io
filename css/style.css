@@ -8140,9 +8140,9 @@ body {
   font-weight: 400;
   color: #999999; }
   body.menu-show {
-    overflow: hidden
+    overflow: hidden;
     height: 100%;
-    overflow-y: auto;    ; }
+    overflow-y: auto; }
 
 a {
   -webkit-transition: .3s all ease;
@@ -8447,7 +8447,8 @@ h1, h2, h3, h4, h5,
         left: 0;
         right: 0;
         background: #000000;
-        opacity: 0; }
+        opacity: 0;
+        pointer-events: none; }
       .owl-carousel.home-slider .slider-item .slider-text {
         height: 100vh;
         z-index: 0; }
@@ -8465,7 +8466,8 @@ h1, h2, h3, h4, h5,
             left: 0;
             right: 0;
             background: #000000;
-            opacity: 0; }
+            opacity: 0;
+            pointer-events: none; }
           @media (max-width: 1199.98px) {
             .owl-carousel.home-slider .slider-item .slider-text .one-third {
               width: 85%; } }
@@ -8609,6 +8611,12 @@ h1, h2, h3, h4, h5,
             font-size: 24px;
             margin-top: 7px;
             color: #ffbd39; }
+            .owl-carousel, .owl-stage-outer {
+  touch-action: pan-y !important;
+  -ms-touch-action: pan-y !important;
+  overscroll-behavior: contain;
+}
+
     .owl-carousel.home-slider .owl-dots {
       position: absolute;
       left: 0;
@@ -9697,4 +9705,30 @@ textarea.form-control {
   .ftco-navbar-light.scrolled {
     margin-top: 0px;
   }
+}
+
+.slider-item, .owl-carousel, .owl-stage-outer {
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slider-item .img {
+  pointer-events: none; /* Prevent image container from blocking scroll */
+}
+
+.hero {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Allow scroll gesture in hero/slider */
+.hero, .slider-item, .owl-carousel, .owl-stage-outer {
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+}
+
+/* Make background image layer non-interactive */
+.slider-item .img {
+  pointer-events: none;
 }
