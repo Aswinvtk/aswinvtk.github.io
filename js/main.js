@@ -51,8 +51,10 @@
 
 			if ( $('#ftco-nav').is(':visible') ) {
 				$(this).removeClass('active');
+				$('body').removeClass('menu-show');
 			} else {
-				$(this).addClass('active');	
+				$(this).addClass('active');
+				$('body').addClass('menu-show');
 			}
 
 			
@@ -78,7 +80,11 @@
 	    });
 
 		if ($('.navbar-collapse').hasClass('show')) {
-			$('.navbar-toggler').click();
+				$('.navbar-toggler').click();
+			}
+
+		if ($('body').hasClass('menu-show')) {
+			$('body').removeClass('menu-show');
 		}
 
 		});
