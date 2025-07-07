@@ -76,6 +76,11 @@
 	    }, 500, function() {
 	    	// window.location.hash = href;
 	    });
+
+		if ($('.navbar-collapse').hasClass('show')) {
+			$('.navbar-toggler').click();
+		}
+
 		});
 
 	};
