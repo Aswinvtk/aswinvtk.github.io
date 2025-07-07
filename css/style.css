@@ -9732,3 +9732,10 @@ textarea.form-control {
 .slider-item .img {
   pointer-events: none;
 }
+
+.ftco_navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
