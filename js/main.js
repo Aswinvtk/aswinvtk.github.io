@@ -230,4 +230,55 @@
     fixedContentPos: false
   });
 
+  // Download Resume functionality
+  $('#downloadResume').on('click', function(e) {
+    e.preventDefault();
+    
+    // Create a temporary link element
+    var link = document.createElement('a');
+    link.href = 'resume/Aswin_VTK_Resume.pdf'; // Update this path to your actual resume file
+    link.download = 'Aswin_VTK_Resume.pdf';
+    link.target = '_blank';
+    
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Show success message
+    showNotification('Resume downloaded successfully!', 'success');
+  });
+
+  // Notification function
+  function showNotification(message, type) {
+    var notification = $('<div class="notification ' + type + '">' + message + '</div>');
+    $('body').append(notification);
+    
+    // Animate in
+    notification.css({
+      'position': 'fixed',
+      'top': '20px',
+      'right': '20px',
+      'background': type === 'success' ? '#28a745' : '#dc3545',
+      'color': 'white',
+      'padding': '15px 20px',
+      'border-radius': '5px',
+      'z-index': '9999',
+      'transform': 'translateX(100%)',
+      'transition': 'transform 0.3s ease'
+    });
+    
+    setTimeout(function() {
+      notification.css('transform', 'translateX(0)');
+    }, 100);
+    
+    // Remove after 3 seconds
+    setTimeout(function() {
+      notification.css('transform', 'translateX(100%)');
+      setTimeout(function() {
+        notification.remove();
+      }, 300);
+    }, 3000);
+  }
+
 })(jQuery);
