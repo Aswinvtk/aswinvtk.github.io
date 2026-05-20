@@ -1,52 +1,29 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = "yourdockerhubusername/myapp"
-        CONTAINER_NAME = "myapp-container"
-    }
-
     stages {
 
-        stage('Clone') {
+        stage('Checkout') {
             steps {
-                echo 'Cloning Repository'
+                checkout scm
             }
         }
 
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME .'
+                sh 'docker build -t aswinvtk/github-pages-site .'
             }
         }
 
-        stage('Test') {
+        stage('Stop Old Container') {
             steps {
-                sh '''
-                docker rm -f test-container || true
-
-                docker run -d \
-                --name test-container \
-                -p 3000:3000 \
-                $IMAGE_NAME
-
-                sleep 10
-
-                curl http://localhost:3000
-                '''
+                sh 'docker rm -f github-pages-site || true'
             }
         }
 
-        stage('Deploy') {
+        stage('Run Container') {
             steps {
-                sh '''
-                docker rm -f production || true
-
-                docker run -d \
-                --name production \
-                -p 80:3000 \
-                $IMAGE_NAME
-                '''
+                sh 'docker run -d --name github-pages-site -p 8080:80 aswinvtk/github-pages-site'
             }
         }
     }
