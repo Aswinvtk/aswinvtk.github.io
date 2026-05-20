@@ -23,7 +23,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d --name github-pages-site -p 8080:80 aswinvtk/github-pages-site'
+                sh 'docker run -d --name github-pages-site -p 9090:80 aswinvtk/github-pages-site'
             }
         }
     }
