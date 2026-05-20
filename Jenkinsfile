@@ -10,10 +10,10 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t aswinvtk/github-pages-site .'
-            }
-        }
+    steps {
+        sh 'docker build --no-cache -t aswinvtk/github-pages-site .'
+    }
+}
 
         stage('Stop Old Container') {
             steps {
